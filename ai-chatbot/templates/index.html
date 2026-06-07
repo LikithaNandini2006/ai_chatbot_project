@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Data Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="app-shell">
+        <section class="panel">
+            <div class="header">
+                <div>
+                    <p class="eyebrow">SQL + Python helper</p>
+                    <h1>AI Data Generator</h1>
+                </div>
+                <span class="status" id="status">Ready</span>
+            </div>
+
+            <form id="chat-form" class="composer">
+                <label for="prompt">Requirement</label>
+                <textarea
+                    id="prompt"
+                    name="prompt"
+                    rows="7"
+                    placeholder="Example: Create a customer sales table and Python code to generate 100 fake records"
+                    required
+                >{{ question }}</textarea>
+                <div class="settings-row">
+                    <label>
+                        Dialect
+                        <select id="dialect" name="dialect">
+                            {% for item in ["MySQL", "PostgreSQL", "SQLite", "SQL Server"] %}
+                                <option value="{{ item }}" {% if dialect == item %}selected{% endif %}>{{ item }}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                    <label>
+                        Model
+                        <input id="model" name="model" value="{{ model }}" />
+                    </label>
+                </div>
+                <button type="submit" id="submit-btn">Generate</button>
+            </form>
+
+            <section class="output-area" aria-live="polite">
+                <div class="output-header">
+                    <h2>Response</h2>
+                    <div class="actions">
+                        <a id="download-link" class="secondary-btn" href="#" aria-disabled="true">Download</a>
+                        <button type="button" id="copy-btn" disabled>Copy</button>
+                    </div>
+                </div>
+                <p id="notice" class="notice" hidden></p>
+                <pre id="response">{% if result and result.query %}{{ result.query }}{% else %}Your SQL query and Python code will appear here.{% endif %}</pre>
+            </section>
+
+            <section class="history">
+                <h2>Recent Queries</h2>
+                <div id="history-list">
+                    {% for item in history %}
+                        <button type="button" class="history-item" data-query="{{ item.query | e }}" data-question="{{ item.question | e }}">
+                            {{ item.question }}
+                        </button>
+                    {% else %}
+                        <p class="muted">No recent queries yet.</p>
+                    {% endfor %}
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

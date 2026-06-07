@@ -1,0 +1,283 @@
+:root {
+    color-scheme: light;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --bg: #f4f7f2;
+    --panel: #ffffff;
+    --text: #17201a;
+    --muted: #5d6a61;
+    --line: #d7ded2;
+    --accent: #276749;
+    --accent-dark: #1f513a;
+    --danger: #a83232;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+}
+
+button,
+textarea,
+select,
+input {
+    font: inherit;
+}
+
+.app-shell {
+    width: min(980px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 18px 45px rgba(23, 32, 26, 0.08);
+    padding: 28px;
+}
+
+.header,
+.output-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.eyebrow {
+    margin: 0 0 6px;
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+h1,
+h2 {
+    margin: 0;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    line-height: 1.05;
+}
+
+h2 {
+    font-size: 1rem;
+}
+
+.status {
+    flex: 0 0 auto;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    padding: 7px 12px;
+}
+
+.composer {
+    display: grid;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+label {
+    color: var(--muted);
+    font-weight: 700;
+}
+
+textarea {
+    width: 100%;
+    resize: vertical;
+    min-height: 180px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--text);
+    padding: 14px 16px;
+    outline: none;
+}
+
+select,
+input {
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #ffffff;
+    color: var(--text);
+    padding: 0 12px;
+    outline: none;
+}
+
+textarea:focus,
+select:focus,
+input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(39, 103, 73, 0.16);
+}
+
+button {
+    border: 0;
+    border-radius: 8px;
+    background: var(--accent);
+    color: white;
+    cursor: pointer;
+    font-weight: 800;
+    min-height: 44px;
+    padding: 0 18px;
+}
+
+button:hover:not(:disabled),
+.secondary-btn:hover {
+    background: var(--accent-dark);
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.58;
+}
+
+#submit-btn {
+    justify-self: start;
+}
+
+#copy-btn {
+    min-height: 36px;
+    background: #31443a;
+}
+
+.settings-row {
+    display: grid;
+    grid-template-columns: minmax(160px, 220px) 1fr;
+    gap: 14px;
+}
+
+.settings-row label {
+    display: grid;
+    gap: 8px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    border-radius: 8px;
+    background: #31443a;
+    color: #ffffff;
+    font-weight: 800;
+    padding: 0 14px;
+    text-decoration: none;
+}
+
+.secondary-btn[aria-disabled="true"] {
+    opacity: 0.58;
+    pointer-events: none;
+}
+
+.notice {
+    margin: 12px 0 0;
+    border: 1px solid #e7cf7a;
+    border-radius: 8px;
+    background: #fff7d6;
+    color: #6b5514;
+    padding: 10px 12px;
+}
+
+.output-area {
+    margin-top: 28px;
+}
+
+pre {
+    min-height: 260px;
+    margin: 14px 0 0;
+    overflow: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #111815;
+    color: #edf7f0;
+    padding: 18px;
+    line-height: 1.55;
+}
+
+.history {
+    margin-top: 28px;
+}
+
+.history h2 {
+    margin-bottom: 12px;
+}
+
+#history-list {
+    display: grid;
+    gap: 10px;
+}
+
+.history-item {
+    width: 100%;
+    min-height: 0;
+    border: 1px solid var(--line);
+    background: #ffffff;
+    color: var(--text);
+    font-weight: 700;
+    padding: 12px 14px;
+    text-align: left;
+}
+
+.history-item:hover {
+    border-color: var(--accent);
+    background: #eef6f0;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+@media (max-width: 640px) {
+    .app-shell {
+        width: min(100% - 20px, 980px);
+        padding: 16px 0;
+    }
+
+    .panel {
+        padding: 18px;
+    }
+
+    .header,
+    .output-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    #submit-btn,
+    #copy-btn {
+        width: 100%;
+    }
+
+    .settings-row {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        width: 100%;
+    }
+
+    .secondary-btn {
+        flex: 1;
+        justify-content: center;
+    }
+}

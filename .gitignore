@@ -1,0 +1,11 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.log
+*.db
+.env
+instance/
+history/
+generated/
+screenshots/
